@@ -170,15 +170,12 @@
   </section>
 </template>
 
-
 <script setup lang="ts">
 
 import { activities } from "@/content/composables/useActivities";
 import fotoLucas from "@/assets/lucas.jpeg";
 
-
 type Section = "projects" | "blog";
-
 
 const emit = defineEmits<{
   nav:[section:Section]
@@ -188,8 +185,6 @@ const emit = defineEmits<{
 function navigate(section:Section){
   emit("nav",section);
 }
-
-
 
 const stats = [
 
