@@ -24,7 +24,7 @@
         </p>
 
         <p
-          class="font-['Inter'] text-sm leading-relaxed"
+          class="font-['Inter'] text-sm leading-relaxed text-justify"
           style="max-width:52ch;color:#444"
         >
           Trabalho na interseção entre pesquisa e desenvolvimento de software.
