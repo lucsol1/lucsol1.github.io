@@ -80,6 +80,9 @@ Object.values(files)
 
 
   return {
+    id: data.id ?? crypto.randomUUID(),
+
+    title: data.title ?? "Sem título",
 
     type: data.type ?? "paper",
 
@@ -90,13 +93,12 @@ Object.values(files)
     description: data.description ?? "",
 
     tags: data.tags
-      ? data.tags.split(",").map(t=>t.trim())
+      ? data.tags.split(",").map(t => t.trim())
       : [],
 
     github: data.github,
 
     demo: data.demo
-
   };
 
 
