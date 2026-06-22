@@ -1,8 +1,15 @@
 export interface Activity {
+  id: string;
+  title: string;
   type: string;
   label: string;
   date: string;
+  description?: string;
+  tags?: string[];
+  github?: string;
+  demo?: string;
 }
+
 
 const files = import.meta.glob(
   "../blog/*.md",
@@ -13,11 +20,13 @@ const files = import.meta.glob(
   }
 );
 
+
 function parseFrontmatter(content: string) {
 
   const match = content.match(
     /^---\n([\s\S]*?)\n---/
   );
+
 
   if (!match) {
     return {};
@@ -26,12 +35,13 @@ function parseFrontmatter(content: string) {
 
   const frontmatter = match[1];
 
+
   if (!frontmatter) {
     return {};
   }
 
 
-  const data: Record<string, string> = {};
+  const data: Record<string,string> = {};
 
 
   frontmatter.split("\n").forEach(line => {
@@ -55,29 +65,46 @@ function parseFrontmatter(content: string) {
   return data;
 }
 
+
+
 export const activities: Activity[] =
-  Object.values(files)
-    .map((content) => {
 
-      const data = parseFrontmatter(
-        String(content)
-      );
+Object.values(files)
 
-      return {
+.map((content)=>{
 
-        type: data.type ?? "paper",
 
-        label: data.title ?? "Sem título",
+  const data = parseFrontmatter(
+    String(content)
+  );
 
-        date: data.date ?? "",
 
-      };
+  return {
 
-    })
-    .sort(
-      (a,b) =>
-        new Date(b.date).getTime()
-        -
-        new Date(a.date).getTime()
-    )
-    .slice(0,3);
+    type: data.type ?? "paper",
+
+    label: data.title ?? "Sem título",
+
+    date: data.date ?? "",
+
+    description: data.description ?? "",
+
+    tags: data.tags
+      ? data.tags.split(",").map(t=>t.trim())
+      : [],
+
+    github: data.github,
+
+    demo: data.demo
+
+  };
+
+
+})
+
+.sort(
+  (a,b)=>
+    new Date(b.date).getTime()
+    -
+    new Date(a.date).getTime()
+);

@@ -25,7 +25,7 @@
           :key="id"
           @click="navigate(id)"
           class="font-['Inter'] text-sm transition-colors"
-          :style="{ color: current === id ? '#42b883' : '#888888' }"
+          :style="{ color: current === id ? '#f97316' : '#888888' }"
         >
           {{ id === 'projects' ? 'Projetos' : 'Blog' }}
         </button>

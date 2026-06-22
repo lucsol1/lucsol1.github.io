@@ -29,7 +29,7 @@ import { ref } from "vue";
 
 import HeaderSection from "./components/HeaderSection.vue";
 import HeroSection from "./components/HeroSection.vue";
-// import Projects from "./components/Projects.vue";
+import Projects from "./components/ProjectsSection.vue";
 // import Blog from "./components/Blog.vue";
 import FooterSection from "./components/FooterSection.vue";
 

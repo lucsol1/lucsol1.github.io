@@ -1,7 +1,8 @@
 <template>
   <section class="max-w-2xl mx-auto px-6 pt-28 pb-20">
-
-    <div class="flex items-start gap-6 mb-8">
+    
+    <div 
+      class="flex items-start gap-6 mb-8">
 
       <img
         :src="fotoLucas"
@@ -174,7 +175,6 @@
 
 import { activities } from "@/content/composables/useActivities";
 import fotoLucas from "@/assets/lucas.jpeg";
-
 type Section = "projects" | "blog";
 
 const emit = defineEmits<{
