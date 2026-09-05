@@ -1,49 +1,32 @@
 <template>
-  <div class="min-h-screen flex flex-col">
-    <HeaderSection
-      :current="currentSection"
-      @nav="navigate"
-    />
-
-    <main class="flex-1">
-      <HeroSection
-        v-if="currentSection === 'home'"
-        @nav="navigate"
-      />
-
-      <Projects
-        v-else-if="currentSection === 'projects'"
-      />
-
-      <Blog
-        v-else-if="currentSection === 'blog'"
-      />
-    </main>
-
-    <FooterSection />
-  </div>
+  <HeaderSection :current="currentSection" @nav="navigate" />
+  <router-view />
+  <FooterSection />
 </template>
+
 <script setup lang="ts">
-
 import { ref } from "vue";
-
+import { useRouter } from "vue-router";
 import HeaderSection from "./components/HeaderSection.vue";
-import HeroSection from "./components/HeroSection.vue";
-import Projects from "./components/ProjectsSection.vue";
-// import Blog from "./components/Blog.vue";
 import FooterSection from "./components/FooterSection.vue";
 
+// Define possible sections for navigation
 type Section = "home" | "projects" | "blog";
 
-
-// abre na home
+// Keep track of current section for header styling
 const currentSection = ref<Section>("home");
 
+const router = useRouter();
 
-function navigate(section: Section){
-
+function navigate(section: Section) {
   currentSection.value = section;
-
+  // Route to the appropriate page
+  if (section === "home") {
+    router.replace({ path: "/" });
+  } else if (section === "projects") {
+    router.replace({ path: "/projects" });
+  } else if (section === "blog") {
+    router.replace({ path: "/blog" });
+  }
 }
-
 </script>

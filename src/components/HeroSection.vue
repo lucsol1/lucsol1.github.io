@@ -186,12 +186,7 @@ function navigate(section:Section){
   emit("nav",section);
 }
 
-const stats = [
-
-  {
-    value:"5+",
-    label:"anos de experiência"
-  },
+const stats = [ 
 
   {
     value:"10",

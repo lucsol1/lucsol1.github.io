@@ -8,10 +8,13 @@ export interface Activity {
   tags?: string[];
   github?: string;
   demo?: string;
+  link?: string;
+  body?: string;
+  source?: string;
 }
 
 
-const files = import.meta.glob(
+const blogFiles = import.meta.glob(
   "../blog/*.md",
   {
     query: "?raw",
@@ -19,6 +22,17 @@ const files = import.meta.glob(
     eager: true,
   }
 );
+
+const projectFiles = import.meta.glob(
+  "../projects/*.md",
+  {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }
+);
+
+const files = { ...blogFiles, ...projectFiles };
 
 
 function parseFrontmatter(content: string) {
@@ -69,15 +83,13 @@ function parseFrontmatter(content: string) {
 
 export const activities: Activity[] =
 
-Object.values(files)
+Object.entries(files)
 
-.map((content)=>{
-
+.map(([path, content]) => {
 
   const data = parseFrontmatter(
     String(content)
   );
-
 
   return {
     id: data.id ?? crypto.randomUUID(),
@@ -90,22 +102,23 @@ Object.values(files)
 
     date: data.date ?? "",
 
-    description: data.description ?? "",
+    description: data.summary ?? data.description ?? "",
 
     tags: data.tags
       ? data.tags.split(",").map(t => t.trim())
       : [],
 
     github: data.github,
-
-    demo: data.demo
+    demo: data.demo,
+    link: data.link,
+    body: String(content).replace(/^---\n[\s\S]*?\n---\n?/, '').trim(),
+    source: path.includes('projects/') ? 'project' : 'blog',
   };
-
 
 })
 
 .sort(
-  (a,b)=>
+  (a,b) =>
     new Date(b.date).getTime()
     -
     new Date(a.date).getTime()

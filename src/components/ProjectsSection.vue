@@ -29,7 +29,7 @@
       :style="{
         background: filter === t ? '#f97316' : 'transparent',
         color: filter === t ? '#fff' : '#888',
-        borderColor: filter === t ? '#42b883' : '#e8e8e8'
+        borderColor: filter === t ? '#f97316' : '#e8e8e8'
       }"
     >
       {{ t }}
@@ -49,45 +49,11 @@
     >
       <div class="flex-1">
         <div class="flex items-center gap-2 mb-1">
-
-
-          <span
-            class="font-['Inter'] text-sm font-medium text-foreground"
-          >
-            {{ p.title }}
-          </span>
-
-
-          <span
-            class="font-['JetBrains_Mono'] text-xs px-1.5 py-0.5 rounded"
-            style="background:#f5faf8;color:#42b883"
-          >
-            {{ p.type }}
-          </span>
+          <span class="font-['Inter'] text-sm font-medium text-foreground">{{ p.title }}</span>
+          <span class="font-['JetBrains_Mono'] text-xs px-1.5 py-0.5 rounded" style="background:#f5faf8;color:#42b883">{{ p.type }}</span>
         </div>
-        <p
-          class="font-['Inter'] text-sm mb-2"
-          style="color:#666;line-height:1.6"
-        >
-          {{ p.description }}
-        </p>
-
+        <p class="font-['Inter'] text-sm mb-2" style="color:#666;line-height:1.6">{{ p.description }}</p>
         <div class="flex gap-1.5 flex-wrap">
-          <span
-            v-for="tag in p.tags"
-            :key="tag"
-            class="font-['JetBrains_Mono'] text-xs px-1.5 py-0.5 rounded"
-            style="background:#f5f5f5;color:#888"
-          >
-            {{ tag }}
-          </span>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-3">
-        <a
-          v-if="p.github"
-          :href="p.github"
           target="_blank"
           class="text-gray-300 hover:text-black"
         >
@@ -115,14 +81,11 @@
 </template>
 
 <script setup lang="ts">
-
 import { ref, computed } from "vue";
-
 import { activities } from "@/content/composables/useActivities";
-
+import MarkdownRenderer from "@/components/MarkdownRenderer.vue";
 
 const filter = ref("Todos");
-
 
 const projectTypes = [
   "Todos",
@@ -130,26 +93,27 @@ const projectTypes = [
   "Open Source",
   "Visualização",
   "Produto",
-  "Pesquisa"
+  "Pesquisa",
 ];
 
 const posts = computed(() => {
-
-  const projects = activities.filter(
-    item => item.type === "project"
-  );
-
-
-  if(filter.value === "Todos"){
-
+  const projects = activities
+    .filter(item => item.source === "project")
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5);
+  if (filter.value === "Todos") {
     return projects;
-
   }
-
-  return projects.filter(
-    item => item.type === filter.value
-  );
-
-
+  return projects.filter(item => item.type === filter.value);
 });
+
+function extractKeywords(body: string): string[] {
+  if (!body) return [];
+  const match = body.match(/Palavras[‑-]chave:\\s*(.*)/i);
+  if (!match) return [];
+  return match[1]
+    .split(',')
+    .map(k => k.trim())
+    .filter(k => k);
+}
 </script>

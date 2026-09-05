@@ -10,7 +10,7 @@
           v-for="link in links"
           :key="link.nome"
           :href="link.url"
-          class="text-xs text-gray-400 hover:text-[#42b883] transition-colors"
+          class="text-xs text-gray-400 hover:text-[#f97316] transition-colors"
         >
           {{ link.nome }}
         </a>

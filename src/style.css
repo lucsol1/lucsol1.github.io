@@ -129,3 +129,21 @@
   }
 
 }
+
+/* Dark theme overrides */
+.dark {
+  --background: #111111;
+  --foreground: #ffffff;
+  --card: #1e1e1e;
+  --card-foreground: #ffffff;
+  --primary: #f97316;
+  --primary-foreground: #ffffff;
+  --secondary: #2d2d2d;
+  --secondary-foreground: #ffffff;
+  --muted: #2a2a2a;
+  --muted-foreground: #bbbbbb;
+  --accent: #f97316;
+  --accent-foreground: #ffffff;
+  --border: #444444;
+  --ring: #f97316;
+}
