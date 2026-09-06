@@ -12,7 +12,7 @@
         {{ item.date }}
       </p>
 
-    
+
 
       <div class="flex flex-wrap gap-1.5 mb-2">
         <span
@@ -53,7 +53,9 @@
         v-if="item.link"
         :href="item.link"
         target="_blank"
-        class="text-orange-600 hover:underline"
+        rel="noopener noreferrer"
+        class="hover:underline"
+        style="color: #f97316"
       >
         Acesse aqui
       </a>
