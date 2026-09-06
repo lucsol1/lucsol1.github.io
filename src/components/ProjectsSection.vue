@@ -1,6 +1,6 @@
 <template>
 
-<section class="max-w-2xl mx-auto px-6 pt-28 pb-20">
+<section class="max-w-2xl mx-auto px-6 pt-28 pb-20 text-foreground">
 
 
   <div class="mb-8">
@@ -12,7 +12,7 @@
     </h2>
     <p
       class="font-['Inter'] text-sm"
-      style="color:#888"
+      class="text-foreground"
     >
       Trabalhos em desenvolvimento, pesquisa e open source.
     </p>
@@ -54,11 +54,14 @@
         </div>
         <p class="font-['Inter'] text-sm mb-2" style="color:#666;line-height:1.6">{{ p.description }}</p>
         <div class="flex gap-1.5 flex-wrap">
-          target="_blank"
-          class="text-gray-300 hover:text-black"
-        >
-          Github
-        </a>
+          <a
+            v-if="p.link"
+            :href="p.link"
+            target="_blank"
+            class="text-gray-300 hover:text-white"
+          >
+            Github
+          </a>
         <a
           v-if="p.demo"
           :href="p.demo"

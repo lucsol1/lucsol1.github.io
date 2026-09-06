@@ -96,6 +96,7 @@ Object.entries(files)
 
     title: data.title ?? "Sem título",
 
+    summary: data.summary ?? "Sem Descrição",
     type: data.type ?? "paper",
 
     label: data.title ?? "Sem título",

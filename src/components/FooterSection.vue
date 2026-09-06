@@ -23,6 +23,8 @@
 const links = [
   { nome: "GitHub", url: "https://github.com/lucsol1" },
 //   { nome: "Scholar", url: "#" },
-  { nome: "LinkedIn", url: "https://www.linkedin.com/in/lusgaoliveira/" }
+  { nome: "LinkedIn", url: "https://www.linkedin.com/in/lusgaoliveira/" },
+  { nome: "E-mail", url: "mailto:voce@email.com" }
+
 ]
 </script>

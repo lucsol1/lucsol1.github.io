@@ -146,4 +146,5 @@
   --accent-foreground: #ffffff;
   --border: #444444;
   --ring: #f97316;
+  .text-black { color: var(--foreground); }
 }

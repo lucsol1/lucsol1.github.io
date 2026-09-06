@@ -1,7 +1,7 @@
 <template>
   <section class="max-w-2xl mx-auto px-6 pt-28 pb-20">
-    
-    <div 
+
+    <div
       class="flex items-start gap-6 mb-8">
 
       <img
@@ -25,8 +25,8 @@
         </p>
 
         <p
-          class="font-['Inter'] text-sm leading-relaxed text-justify"
-          style="max-width:52ch;color:#444"
+          class="font-['Inter'] text-sm leading-relaxed text-justify text-foreground"
+          style="max-width:52ch"
         >
           Trabalho na interseção entre pesquisa e desenvolvimento de software.
           Meus interesses incluem cidades inteligentes e computação urbana.
@@ -38,31 +38,7 @@
 
     </div>
 
-    <div class="flex flex-wrap gap-2 mb-12">
 
-      <button
-        @click="navigate('projects')"
-        class="font-['Inter'] text-sm px-4 py-1.5 rounded text-white bg-primary transition-opacity hover:opacity-85"
-      >
-        Projetos
-      </button>
-
-      <button
-        @click="navigate('blog')"
-        class="font-['Inter'] text-sm px-4 py-1.5 rounded border transition-colors hover:text-primary"
-        style="border-color:#e8e8e8;color:#444"
-      >
-        Blog
-      </button>
-      <a
-        href="mailto:voce@email.com"
-        class="font-['Inter'] text-sm px-4 py-1.5 rounded border transition-colors hover:text-primary"
-        style="border-color:#e8e8e8;color:#888"
-      >
-        Contato
-      </a>
-
-    </div>
 
 
     <div
@@ -85,8 +61,7 @@
 
 
         <p
-          class="font-['Inter'] text-xs"
-          style="color:#888"
+          class="font-['Inter'] text-xs text-foreground"
         >
           {{ stat.label }}
         </p>
@@ -110,9 +85,8 @@
     <div>
 
       <p
-        class="font-['Inter'] text-xs font-medium mb-4"
+        class="font-['Inter'] text-xs font-medium mb-4 text-foreground"
         style="
-          color:#888;
           text-transform:uppercase;
           letter-spacing:.08em;
         "
@@ -144,8 +118,7 @@
 
 
             <span
-              class="font-['Inter'] text-sm"
-              style="color:#222"
+              class="font-['Inter'] text-sm text-foreground"
             >
               {{ item.label }}
             </span>
@@ -154,8 +127,7 @@
 
 
           <span
-            class="font-['JetBrains_Mono'] text-xs"
-            style="color:#bbb"
+            class="font-['JetBrains_Mono'] text-xs text-foreground"
           >
             {{ item.date }}
           </span>
@@ -175,18 +147,8 @@
 
 import { activities } from "@/content/composables/useActivities";
 import fotoLucas from "@/assets/lucas.jpeg";
-type Section = "projects" | "blog";
 
-const emit = defineEmits<{
-  nav:[section:Section]
-}>();
-
-
-function navigate(section:Section){
-  emit("nav",section);
-}
-
-const stats = [ 
+const stats = [
 
   {
     value:"10",
